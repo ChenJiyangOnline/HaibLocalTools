@@ -1,0 +1,12 @@
+exportPattern("^[[:alpha:]]+")
+
+export(fxx.save_plot)
+export(fxx.save_baseplot_obj2res)
+export(fxx.save_baseplot_obj2rdata)
+export(fxx.create_and_setwd)
+export(fxx.get_many_color)
+export(fxx.sanitize_variable_name)
+
+importFrom(grid,grid.draw)
+importFrom(grDevices,png,pdf,dev.off)
+importFrom(ggplot2,last_plot)
