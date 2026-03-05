@@ -6,7 +6,12 @@ export(fxx.save_baseplot_obj2rdata)
 export(fxx.create_and_setwd)
 export(fxx.get_many_color)
 export(fxx.sanitize_variable_name)
+export(fxx.plot_pca)
+export(fxx.plot_tsne)
+export(fxx.plot_umap)
+
 
 importFrom(grid,grid.draw)
 importFrom(grDevices,png,pdf,dev.off)
 importFrom(ggplot2,last_plot)
+importFrom(rlang,.data)
