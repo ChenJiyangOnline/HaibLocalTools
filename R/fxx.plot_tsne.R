@@ -9,6 +9,22 @@
 #' @return A named list of ggplot objects.
 #' @importFrom rlang .data
 #' @export
+#' @examples
+#' if (requireNamespace("Rtsne", quietly = TRUE)) {
+#'   set.seed(11)
+#'   n <- 30; p <- 20
+#'   mat <- matrix(rnorm(n * p), nrow = p, ncol = n)
+#'   grp <- rep(c("QC", "Pg", "AE"), length.out = n)
+#'   mat_t <- t(mat)
+#'   tsne_out <- Rtsne::Rtsne(mat_t, dims = 2, perplexity = 5, verbose = FALSE)
+#'   tsne_data <- data.frame(TSNE1 = tsne_out$Y[,1], TSNE2 = tsne_out$Y[,2], Group = grp)
+#'   cols <- c("#27AE60", "#8F5F9F", "#2E86AB")
+#'   pl <- fxx.plot_tsne(tsne_data, group = "Group", mycol = cols)
+#'   pl$colored
+#' }
+#'
+#'
+#'
 fxx.plot_tsne <- function(tsne_data,
                           group = NULL,
                           x_col = "TSNE1",
@@ -147,18 +163,4 @@ fxx.plot_tsne <- function(tsne_data,
 }
 
 
-#' @examples
-#' if (requireNamespace("Rtsne", quietly = TRUE)) {
-#'   set.seed(11)
-#'   n <- 30; p <- 20
-#'   mat <- matrix(rnorm(n * p), nrow = p, ncol = n)
-#'   grp <- rep(c("QC", "Pg", "AE"), length.out = n)
-#'   mat_t <- t(mat)
-#'   tsne_out <- Rtsne::Rtsne(mat_t, dims = 2, perplexity = 5, verbose = FALSE)
-#'   tsne_data <- data.frame(TSNE1 = tsne_out$Y[,1], TSNE2 = tsne_out$Y[,2], Group = grp)
-#'   cols <- c("#27AE60", "#8F5F9F", "#2E86AB")
-#'   pl <- fxx.plot_tsne(tsne_data, group = "Group", mycol = cols)
-#'   pl$colored
-#' }
-#'
-#'
+

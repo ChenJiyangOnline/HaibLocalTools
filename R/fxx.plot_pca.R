@@ -8,6 +8,23 @@
 #'
 #' @return A named list of ggplot objects.
 #' @export
+#' @examples
+#' set.seed(11)
+#' n <- 30; p <- 20
+#' mat <- matrix(rnorm(n * p), nrow = p, ncol = n)
+#' grp <- rep(c("QC", "Pg", "AE"), length.out = n)
+#' mat_t <- t(mat)
+#'
+#' pca_out <- stats::prcomp(mat_t, scale. = TRUE)
+#' pca_data <- data.frame(
+#'   PC1 = pca_out$x[, 1],
+#'   PC2 = pca_out$x[, 2],
+#'   Group = grp
+#' )
+#' cols <- c("#27AE60", "#8F5F9F", "#2E86AB")
+#' pl <- fxx.plot_pca(pca_data, group = "Group", mycol = cols)
+#' pl$colored
+
 fxx.plot_pca <- function(pca_data,
                          group = NULL,
                          x_col = "PC1",
@@ -147,19 +164,3 @@ fxx.plot_pca <- function(pca_data,
 
 
 
-#' @examples
-#' set.seed(11)
-#' n <- 30; p <- 20
-#' mat <- matrix(rnorm(n * p), nrow = p, ncol = n)
-#' grp <- rep(c("QC", "Pg", "AE"), length.out = n)
-#' mat_t <- t(mat)
-#'
-#' pca_out <- stats::prcomp(mat_t, scale. = TRUE)
-#' pca_data <- data.frame(
-#'   PC1 = pca_out$x[, 1],
-#'   PC2 = pca_out$x[, 2],
-#'   Group = grp
-#' )
-#' cols <- c("#27AE60", "#8F5F9F", "#2E86AB")
-#' pl <- fxx.plot_pca(pca_data, group = "Group", mycol = cols)
-#' pl$colored

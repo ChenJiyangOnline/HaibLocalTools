@@ -19,7 +19,7 @@ Imports:
     grid,
     grDevices,
     ggsci,
-    doBy
+    doBy,
     rlang
 Suggests:
     ComplexHeatmap

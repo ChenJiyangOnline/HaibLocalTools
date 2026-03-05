@@ -9,6 +9,27 @@
 #' @return A named list of ggplot objects.
 #' @importFrom rlang .data
 #' @export
+#' @examples
+#' if (requireNamespace("umap", quietly = TRUE)) {
+#'   set.seed(11)
+#'   n <- 30; p <- 20
+#'   mat <- matrix(rnorm(n * p), nrow = p, ncol = n)
+#'   grp <- rep(c("QC", "Pg", "AE"), length.out = n)
+#'   mat_t <- t(mat)
+#'
+#'   cfg <- umap::umap.defaults
+#'   cfg$n_neighbors <- max(2, min(10, nrow(mat_t) - 1))
+#'   umap_out <- umap::umap(mat_t, config = cfg)
+#'
+#'   umap_data <- data.frame(
+#'     UMAP1 = umap_out$layout[, 1],
+#'     UMAP2 = umap_out$layout[, 2],
+#'     Group = grp
+#'   )
+#'   cols <- c("#27AE60", "#8F5F9F", "#2E86AB")
+#'   pl <- fxx.plot_umap(umap_data, group = "Group", mycol = cols)
+#'   pl$colored
+#' }
 fxx.plot_umap <- function(umap_data,
                           group = NULL,
                           x_col = "UMAP1",
@@ -146,24 +167,4 @@ fxx.plot_umap <- function(umap_data,
   plot_list
 }
 
-#' @examples
-#' if (requireNamespace("umap", quietly = TRUE)) {
-#'   set.seed(11)
-#'   n <- 30; p <- 20
-#'   mat <- matrix(rnorm(n * p), nrow = p, ncol = n)
-#'   grp <- rep(c("QC", "Pg", "AE"), length.out = n)
-#'   mat_t <- t(mat)
-#'
-#'   cfg <- umap::umap.defaults
-#'   cfg$n_neighbors <- max(2, min(10, nrow(mat_t) - 1))
-#'   umap_out <- umap::umap(mat_t, config = cfg)
-#'
-#'   umap_data <- data.frame(
-#'     UMAP1 = umap_out$layout[, 1],
-#'     UMAP2 = umap_out$layout[, 2],
-#'     Group = grp
-#'   )
-#'   cols <- c("#27AE60", "#8F5F9F", "#2E86AB")
-#'   pl <- fxx.plot_umap(umap_data, group = "Group", mycol = cols)
-#'   pl$colored
-#' }
+
